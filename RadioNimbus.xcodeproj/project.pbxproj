@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0388BE822CEB1845007444AF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE812CEB1845007444AF /* Alamofire */; };
+		0388BE852CEB1864007444AF /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE842CEB1864007444AF /* Toast */; };
+		0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE872CEB18E7007444AF /* SwiftSpinner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0388BE622CEB155C007444AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0388BE852CEB1864007444AF /* Toast in Frameworks */,
+				0388BE822CEB1845007444AF /* Alamofire in Frameworks */,
+				0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = RadioNimbus;
 			packageProductDependencies = (
+				0388BE812CEB1845007444AF /* Alamofire */,
+				0388BE842CEB1864007444AF /* Toast */,
+				0388BE872CEB18E7007444AF /* SwiftSpinner */,
 			);
 			productName = RadioNimbus;
 			productReference = 0388BE482CEB1559007444AF /* RadioNimbus.app */;
@@ -208,6 +220,12 @@
 			);
 			mainGroup = 0388BE3F2CEB1559007444AF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0388BE7F2CEB15EB007444AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				0388BE802CEB1845007444AF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0388BE832CEB1864007444AF /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				0388BE862CEB18E7007444AF /* XCRemoteSwiftPackageReference "SwiftSpinner" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0388BE492CEB1559007444AF /* Products */;
 			projectDirPath = "";
@@ -287,16 +305,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PMCZ986CHG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RadioNimbus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,16 +334,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PMCZ986CHG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RadioNimbus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,6 +589,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0388BE7F2CEB15EB007444AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+		0388BE802CEB1845007444AF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+		0388BE832CEB1864007444AF /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		0388BE862CEB18E7007444AF /* XCRemoteSwiftPackageReference "SwiftSpinner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/icanzilb/SwiftSpinner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0388BE812CEB1845007444AF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0388BE802CEB1845007444AF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0388BE842CEB1864007444AF /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0388BE832CEB1864007444AF /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		0388BE872CEB18E7007444AF /* SwiftSpinner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0388BE862CEB18E7007444AF /* XCRemoteSwiftPackageReference "SwiftSpinner" */;
+			productName = SwiftSpinner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0388BE402CEB1559007444AF /* Project object */;
 }

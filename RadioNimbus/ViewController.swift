@@ -63,6 +63,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var subview1: UIView!
     
     
     override func viewDidLoad() {
@@ -77,6 +78,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         locationManager.startUpdatingLocation()
         cityDropDown.isHidden = true
+        subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
     }
     

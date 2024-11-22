@@ -19,15 +19,65 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var longitude: Double?
     
     var scheduleFetch: DispatchWorkItem?
-    func tableView(_ cityDropDown: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return suggestions.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(tableView==cityDropDown){
+            print("cityDropDown numberOfRowsInSection called")
+            return suggestions.count
+        
+        }else if(tableView==weeklyTable){
+            print("weeklyTable numberOfRowsInSection called")
+            return weeklyData.count
+        }else{
+            return 0
+        }
     }
     
-    func tableView(_ cityDropDown: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cityCell = cityDropDown.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
-        let location = suggestions[indexPath.row]
-        cityCell.textLabel?.text = "\(location.city)"
-        return cityCell
+    func convertTime(time: String) -> String? {
+
+        let inputDate = DateFormatter()
+        inputDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        inputDate.timeZone = TimeZone(abbreviation: "UTC")
+
+        let date = inputDate.date(from: time)
+        
+        let outputDate = DateFormatter()
+        outputDate.dateFormat = "hh:mm a"
+        outputDate.timeZone = TimeZone(abbreviation: "PST") 
+
+        let pstTime = outputDate.string(from: date!)
+        return pstTime
+    }
+
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(tableView==cityDropDown){
+            print(0)
+            let cityCell = cityDropDown.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
+            let location = suggestions[indexPath.row]
+            cityCell.textLabel?.text = "\(location.city)"
+            return cityCell
+        }else if(tableView==weeklyTable){
+            print(1)
+            let dayCell = weeklyTable.dequeueReusableCell(withIdentifier: "day", for: indexPath)as? weeklyTableViewCell
+            let currentData = weeklyData[indexPath.row]
+            print(currentData)
+            let startTime = currentData["startTime"] as? String
+            dayCell?.dateLabel.text = startTime
+            let values = currentData["values"] as? [String: Any]
+            let weatherCode = values?["weatherCode"] as? Int ?? 0
+            let currentStatus = weatherCodes[weatherCode]
+            dayCell?.dayWeatherImage.image = UIImage(named: currentStatus ?? "Clear")
+            let sunRiseTime = values?["sunriseTime"] as? String
+            let sunSetTime = values?["sunsetTime"] as? String
+            dayCell?.sunRiseLabel.text = self.convertTime(time: sunRiseTime!)
+            dayCell?.sunsetLabel.text = self.convertTime(time: sunSetTime!)
+            
+            
+            
+            
+            return dayCell!
+        }
+        return UITableViewCell()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -51,6 +101,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     var suggestions: [(city: String, state: String)] = []
     
+    var weeklyData: [[String: Any]] = []
+
+    
     @IBOutlet weak var citySearchBar: UISearchBar!
     
     @IBOutlet weak var cityDropDown: UITableView!
@@ -65,14 +118,28 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var subview1: UIView!
     
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var windspeedLabel: UILabel!
+    
+    @IBOutlet weak var visibilityLabel: UILabel!
+    
+    @IBOutlet weak var pressureLabel: UILabel!
+    
+    @IBOutlet weak var weeklyTable: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        weeklyTable.reloadData()
         locationManager.delegate = self
         citySearchBar.delegate = self
         cityDropDown.delegate = self
         cityDropDown.dataSource = self
+        weeklyTable.delegate = self
+        weeklyTable.dataSource = self
+        print("WeeklyTable delegate and data source set")
         view.bringSubviewToFront(cityDropDown)
         locationManager.requestWhenInUseAuthorization()
         
@@ -108,14 +175,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let selectedLocation = suggestions[indexPath.row]
-        
-        citySearchBar.text = selectedLocation.city
-
-        suggestions = []
-        cityDropDown.reloadData()
-        self.cityDropDown.isHidden = self.suggestions.isEmpty
+        if(tableView==cityDropDown){
+            let selectedLocation = suggestions[indexPath.row]
+            
+            citySearchBar.text = selectedLocation.city
+            
+            suggestions = []
+            cityDropDown.reloadData()
+            self.cityDropDown.isHidden = self.suggestions.isEmpty
+        }
     }
     
     func getCityAutocomplete(for query: String) {
@@ -199,14 +267,24 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let data = daily_data?["data"] as? [String: Any]
         let timelines = data?["timelines"] as? [[String: Any]]
         let intervals = timelines?.first?["intervals"] as? [[String: Any]]
+        self.weeklyData = intervals!
+        self.weeklyTable.reloadData()
         let currentData = intervals?.first
         let values = currentData?["values"] as? [String: Any]
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
         temperatureLabel.text = "\(currentTemperature)°F"
-        var weatherCode = values?["weatherCode"] as? Int ?? 0
+        let weatherCode = values?["weatherCode"] as? Int ?? 0
         let currentStatus = weatherCodes[weatherCode]
         statusLabel.text = currentStatus
         weatherImage.image = UIImage(named: currentStatus ?? "Clear")
+        let currentHumidity = values?["humidity"] as? Int ?? 0
+        humidityLabel.text = "\(currentHumidity) %"
+        let currentWindspeed = values?["windSpeed"] as? Double ?? 0
+        windspeedLabel.text = "\(currentWindspeed) mph"
+        let currentVisibility = values?["visibility"] as? Double ?? 0
+        visibilityLabel.text = "\(currentVisibility) mi"
+        let currentPressure = values?["pressureSeaLevel"] as? Double ?? 0
+        pressureLabel.text = "\(currentPressure) inHg"
         
         
         

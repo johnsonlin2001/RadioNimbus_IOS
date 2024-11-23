@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 import CoreLocation
+import SwiftSpinner
 
 
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
@@ -21,11 +22,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var scheduleFetch: DispatchWorkItem?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView==cityDropDown){
-            print("cityDropDown numberOfRowsInSection called")
             return suggestions.count
         
         }else if(tableView==weeklyTable){
-            print("weeklyTable numberOfRowsInSection called")
             return weeklyData.count
         }else{
             return 0
@@ -47,22 +46,35 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let pstTime = outputDate.string(from: date!)
         return pstTime
     }
+    
+    func convertDate(time: String) -> String? {
+
+        let inputDate = DateFormatter()
+        inputDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        inputDate.timeZone = TimeZone(abbreviation: "UTC")
+
+        let date = inputDate.date(from: time)
+
+        let outputDate = DateFormatter()
+        outputDate.dateFormat = "MM/dd/yyyy"
+        outputDate.timeZone = TimeZone.current
+
+        let newDate = outputDate.string(from: date!)
+        return newDate
+    }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(tableView==cityDropDown){
-            print(0)
             let cityCell = cityDropDown.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
             let location = suggestions[indexPath.row]
             cityCell.textLabel?.text = "\(location.city)"
             return cityCell
         }else if(tableView==weeklyTable){
-            print(1)
             let dayCell = weeklyTable.dequeueReusableCell(withIdentifier: "day", for: indexPath)as? weeklyTableViewCell
             let currentData = weeklyData[indexPath.row]
-            print(currentData)
             let startTime = currentData["startTime"] as? String
-            dayCell?.dateLabel.text = startTime
+            dayCell?.dateLabel.text = self.convertDate(time: startTime!)
             let values = currentData["values"] as? [String: Any]
             let weatherCode = values?["weatherCode"] as? Int ?? 0
             let currentStatus = weatherCodes[weatherCode]
@@ -72,9 +84,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             dayCell?.sunRiseLabel.text = self.convertTime(time: sunRiseTime!)
             dayCell?.sunsetLabel.text = self.convertTime(time: sunSetTime!)
             
-            
-            
-            
+
             return dayCell!
         }
         return UITableViewCell()
@@ -139,7 +149,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         cityDropDown.dataSource = self
         weeklyTable.delegate = self
         weeklyTable.dataSource = self
-        print("WeeklyTable delegate and data source set")
         view.bringSubviewToFront(cityDropDown)
         locationManager.requestWhenInUseAuthorization()
         
@@ -168,6 +177,18 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
 
         }
     }
+    
+    func getCityCoordinates(for location: (city: String, state: String), completion: @escaping (Double?, Double?) -> Void) {
+        let geocoder = CLGeocoder()
+        let address = "\(location.city), \(location.state)"
+        geocoder.geocodeAddressString(address) { places, error in
+            if let place = places?.first, let coordinates = place.location?.coordinate {
+                completion(coordinates.latitude, coordinates.longitude)
+            } else {
+                completion(0.00, 0.00)
+            }
+        }
+    }
 
     // Delegate method: Failed to fetch location
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -183,8 +204,38 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             suggestions = []
             cityDropDown.reloadData()
             self.cityDropDown.isHidden = self.suggestions.isEmpty
+            
+            SwiftSpinner.show("Fetching Weather Details for \(selectedLocation.city)")
+            
+            self.getCityCoordinates(for: selectedLocation) { [weak self] lat, long in
+                guard let self = self, let latitude = lat, let longitude = long else {
+                    SwiftSpinner.hide()
+                    return
+                }
+                
+                self.getWeatherData1(for: latitude, for: longitude){weatherData in
+                    SwiftSpinner.hide()
+                    
+                    if let data = weatherData {
+                        print("Fetched Weather Data: \(data)")
+                        DispatchQueue.main.async {
+                            print("Performing segue to results view")
+                            self.performSegue(withIdentifier: "showResultsSegue", sender: self)
+                        }
+                        
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            
         }
     }
+    
+    
     
     func getCityAutocomplete(for query: String) {
         let backendUrl = "https://radionimbus.wl.r.appspot.com/places"
@@ -233,6 +284,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
         
         
+    }
+    
+    func getWeatherData1(for lat: Double, for long: Double, completion: @escaping ([String: Any]?) -> Void) {
+        let backendUrl = "https://radionimbus.wl.r.appspot.com/fetchweatherdata"
+        let queryParams: [String: Any] = ["lat": lat, "long": long]
+        
+        AF.request(backendUrl, method: .get, parameters: queryParams).validate().responseJSON { response in
+            switch response.result {
+            case .success(let json):
+                if let weatherData = json as? [String: Any] {
+                    completion(weatherData)
+                }
+            case .failure(let error):
+                print(error)
+                completion(nil)
+            }
+        }
     }
     
     let weatherCodes: [Int: String] = [

@@ -19,6 +19,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var latitude: Double?
     var longitude: Double?
     
+    var weatherData: [String: Any]?
+
+    
     var scheduleFetch: DispatchWorkItem?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView==cityDropDown){
@@ -195,6 +198,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         print("Error fetching location: \(error.localizedDescription)")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showResultsSegue" {
+            // Pass data to the ResultsViewController
+            let resultsView = segue.destination as? ResultsViewController
+            resultsView?.weatherData = self.weatherData
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(tableView==cityDropDown){
             let selectedLocation = suggestions[indexPath.row]
@@ -217,6 +228,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     SwiftSpinner.hide()
                     
                     if let data = weatherData {
+                        self.weatherData = weatherData
                         print("Fetched Weather Data: \(data)")
                         DispatchQueue.main.async {
                             print("Performing segue to results view")

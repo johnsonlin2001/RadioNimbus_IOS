@@ -8,10 +8,18 @@
 import UIKit
 
 class ResultsViewController: UIViewController {
+    
+    var weatherData: [String: Any]?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        if let data = weatherData {
+                    print("Received weather data: \(data)")
+                    // Update labels, images, etc., with the weather data
+                }
         // Do any additional setup after loading the view.
     }
     

@@ -294,27 +294,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="App_background" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-8U-r7b">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                             </imageView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tFY-Y5-vuG">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Jnd-17-qHc" id="buf-eI-Nda"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tQM-h2-MX3">
-                                <rect key="frame" x="0.0" y="56" width="393" height="286"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" id="h4j-XY-Pvh">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h4j-XY-Pvh" id="3xQ-89-OiW">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <view contentMode="scaleToFill" id="gf9-Zv-FCN">
                                 <rect key="frame" x="15" y="129" width="362" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -518,24 +497,12 @@
                             <constraint firstItem="Qbu-TS-7dq" firstAttribute="bottom" secondItem="Pz1-o9-9VM" secondAttribute="bottom" constant="47" id="2OT-4O-3QD"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="leading" secondItem="BXb-Wj-985" secondAttribute="leading" id="3Aq-qT-dcL"/>
                             <constraint firstAttribute="trailing" secondItem="Lcl-8U-r7b" secondAttribute="trailing" id="3E4-yh-tee"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" id="7c0-Cu-E7l"/>
                             <constraint firstItem="Ofp-Hp-llm" firstAttribute="top" secondItem="gf9-Zv-FCN" secondAttribute="bottom" constant="40" id="896-Ac-Gfk"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" id="9tP-8a-dxM"/>
-                            <constraint firstItem="tFY-Y5-vuG" firstAttribute="top" secondItem="Qbu-TS-7dq" secondAttribute="top" id="AeL-tr-BQ0"/>
-                            <constraint firstItem="tFY-Y5-vuG" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" id="DiB-a4-Aa6"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="trailing" secondItem="Qbu-TS-7dq" secondAttribute="trailing" id="HVu-2U-Jfj"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" id="POr-QR-Mle"/>
-                            <constraint firstItem="tFY-Y5-vuG" firstAttribute="trailing" secondItem="Qbu-TS-7dq" secondAttribute="trailing" id="SHo-rG-CBL"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" id="XKe-dZ-Qbh"/>
                             <constraint firstAttribute="bottom" secondItem="Lcl-8U-r7b" secondAttribute="bottom" id="bo8-jo-Xj4"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="15" id="fAA-xD-lyY"/>
                             <constraint firstItem="Qbu-TS-7dq" firstAttribute="trailing" secondItem="Pz1-o9-9VM" secondAttribute="trailing" constant="16" id="fre-XP-epB"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="top" secondItem="Qbu-TS-7dq" secondAttribute="top" constant="56" id="hc5-lW-pk3"/>
-                            <constraint firstItem="tQM-h2-MX3" firstAttribute="top" secondItem="tFY-Y5-vuG" secondAttribute="bottom" id="loc-wW-JHh"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="top" secondItem="BXb-Wj-985" secondAttribute="top" id="nsW-Rj-9Bj"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="top" secondItem="Ofp-Hp-llm" secondAttribute="bottom" constant="24.329999999999998" id="nt9-iZ-s2A"/>
-                            <constraint firstItem="Qbu-TS-7dq" firstAttribute="bottom" secondItem="tQM-h2-MX3" secondAttribute="bottom" constant="500" id="rQu-zE-AWv"/>
-                            <constraint firstItem="tFY-Y5-vuG" firstAttribute="top" secondItem="Qbu-TS-7dq" secondAttribute="top" id="z6i-vd-ine"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XJ0-tN-GqM"/>

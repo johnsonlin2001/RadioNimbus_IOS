@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mC9-RK-Ggh">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -20,14 +20,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tHD-qU-jUg">
-                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="04m-is-wcm"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rp6-gt-bIl">
-                                <rect key="frame" x="0.0" y="115" width="393" height="203"/>
+                                <rect key="frame" x="0.0" y="159" width="393" height="159"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" id="lZm-Uj-MSK">
@@ -263,6 +263,7 @@
                             <constraint firstItem="8HU-Gk-bBs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v1C-YY-75b"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="szZ-mu-9Pg"/>
                     <connections>
                         <outlet property="cityDropDown" destination="rp6-gt-bIl" id="TZM-hH-9zm"/>
                         <outlet property="citySearchBar" destination="tHD-qU-jUg" id="zEw-2o-ESU"/>
@@ -281,21 +282,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16" y="-65"/>
+            <point key="canvasLocation" x="941.22137404580144" y="-65.492957746478879"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="np6-De-Q4b">
             <objects>
                 <viewController id="Jnd-17-qHc" customClass="ResultsViewController" customModule="RadioNimbus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BXb-Wj-985">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="App_background" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-8U-r7b">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="gf9-Zv-FCN">
-                                <rect key="frame" x="15" y="129" width="362" height="175"/>
+                                <rect key="frame" x="15" y="158" width="362" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-Ka-GXh">
@@ -338,7 +339,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ofp-Hp-llm">
-                                <rect key="frame" x="6" y="344" width="380" height="156.66666666666663"/>
+                                <rect key="frame" x="6" y="373" width="380" height="156.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="IsT-Rl-05z">
                                         <rect key="frame" x="0.0" y="0.0" width="95" height="156.66666666666666"/>
@@ -431,7 +432,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Pz1-o9-9VM">
-                                <rect key="frame" x="15" y="525" width="362" height="270"/>
+                                <rect key="frame" x="15" y="554" width="362" height="236"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="day" id="yua-jr-jnB" customClass="weeklyTableViewCell" customModule="RadioNimbus" customModuleProvider="target">
@@ -490,26 +491,68 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xd7-Hn-VT1">
+                                <rect key="frame" x="332" y="96" width="54" height="73"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus-circle" title=""/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qbu-TS-7dq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Qbu-TS-7dq" firstAttribute="bottom" secondItem="Pz1-o9-9VM" secondAttribute="bottom" constant="47" id="2OT-4O-3QD"/>
+                            <constraint firstItem="Qbu-TS-7dq" firstAttribute="bottom" secondItem="Pz1-o9-9VM" secondAttribute="bottom" constant="28" id="2OT-4O-3QD"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="leading" secondItem="BXb-Wj-985" secondAttribute="leading" id="3Aq-qT-dcL"/>
                             <constraint firstAttribute="trailing" secondItem="Lcl-8U-r7b" secondAttribute="trailing" id="3E4-yh-tee"/>
                             <constraint firstItem="Ofp-Hp-llm" firstAttribute="top" secondItem="gf9-Zv-FCN" secondAttribute="bottom" constant="40" id="896-Ac-Gfk"/>
+                            <constraint firstItem="Xd7-Hn-VT1" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="332" id="UTE-Ig-Op6"/>
+                            <constraint firstItem="Xd7-Hn-VT1" firstAttribute="top" secondItem="BXb-Wj-985" secondAttribute="top" constant="88" id="bb2-hk-GjW"/>
                             <constraint firstAttribute="bottom" secondItem="Lcl-8U-r7b" secondAttribute="bottom" id="bo8-jo-Xj4"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="15" id="fAA-xD-lyY"/>
                             <constraint firstItem="Qbu-TS-7dq" firstAttribute="trailing" secondItem="Pz1-o9-9VM" secondAttribute="trailing" constant="16" id="fre-XP-epB"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="top" secondItem="BXb-Wj-985" secondAttribute="top" id="nsW-Rj-9Bj"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="top" secondItem="Ofp-Hp-llm" secondAttribute="bottom" constant="24.329999999999998" id="nt9-iZ-s2A"/>
+                            <constraint firstItem="Ofp-Hp-llm" firstAttribute="top" secondItem="Xd7-Hn-VT1" secondAttribute="bottom" constant="212" id="ofM-kA-rN3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XJ0-tN-GqM"/>
+                    <navigationItem key="navigationItem" id="XJ0-tN-GqM">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="twitter" id="OoS-fC-ZQb">
+                            <color key="tintColor" systemColor="linkColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityLabel" destination="cKd-FV-5S8" id="Rbi-4k-frK"/>
+                        <outlet property="humidityLabel" destination="0LN-1M-0hG" id="OWS-Ya-tBx"/>
+                        <outlet property="pressureLabel" destination="7VM-54-EWF" id="3B2-kW-gdv"/>
+                        <outlet property="subview1" destination="gf9-Zv-FCN" id="MVX-2L-8X5"/>
+                        <outlet property="temperatureLabel" destination="Ap0-qV-Yav" id="DGL-ie-Qtb"/>
+                        <outlet property="visibilityLabel" destination="srd-Uz-GR3" id="tEX-au-N8M"/>
+                        <outlet property="weatherImage" destination="rYB-Ka-GXh" id="AnQ-af-9go"/>
+                        <outlet property="weatherStatusLabel" destination="APj-6S-n79" id="G9C-cf-Vp9"/>
+                        <outlet property="weeklyTable" destination="Pz1-o9-9VM" id="6dV-mT-DZO"/>
+                        <outlet property="windspeedLabel" destination="ELN-eP-v9D" id="Vfh-3L-giG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M71-mV-H1q" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="752" y="-54"/>
+            <point key="canvasLocation" x="1678.6259541984732" y="-54.225352112676056"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vPx-sa-Uot">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mC9-RK-Ggh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uan-sf-COd">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cIC-JY-bdY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CPd-Fh-IuB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14.503816793893129" y="-65.492957746478879"/>
         </scene>
     </scenes>
     <resources>
@@ -518,8 +561,13 @@
         <image name="Pressure" width="80" height="80"/>
         <image name="Visibility" width="80" height="80"/>
         <image name="WindSpeed" width="80" height="80"/>
+        <image name="plus-circle" width="30" height="30"/>
         <image name="sun-rise" width="24" height="24"/>
         <image name="sun-set" width="24" height="24"/>
+        <image name="twitter" width="16" height="16"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

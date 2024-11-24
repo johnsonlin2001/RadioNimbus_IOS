@@ -20,6 +20,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var longitude: Double?
     
     var weatherData: [String: Any]?
+    
+    var selectedCity: String?
 
     
     var scheduleFetch: DispatchWorkItem?
@@ -141,6 +143,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var weeklyTable: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +165,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         locationManager.startUpdatingLocation()
         cityDropDown.isHidden = true
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        self.navigationItem.backButtonTitle = "Weather"
 
     }
     
@@ -202,6 +210,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         if segue.identifier == "showResultsSegue" {
             // Pass data to the ResultsViewController
             let resultsView = segue.destination as? ResultsViewController
+            resultsView?.city = self.selectedCity
             resultsView?.weatherData = self.weatherData
         }
     }
@@ -211,6 +220,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             let selectedLocation = suggestions[indexPath.row]
             
             citySearchBar.text = selectedLocation.city
+            self.selectedCity = selectedLocation.city
             
             suggestions = []
             cityDropDown.reloadData()
@@ -229,7 +239,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     
                     if let data = weatherData {
                         self.weatherData = weatherData
-                        print("Fetched Weather Data: \(data)")
                         DispatchQueue.main.async {
                             print("Performing segue to results view")
                             self.performSegue(withIdentifier: "showResultsSegue", sender: self)

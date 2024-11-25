@@ -131,6 +131,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let data = weatherData {
                     self.updateValues(with: data)
                 }
+        self.checkFav(city: city ?? "", state: state ?? "")
         
         // Do any additional setup after loading the view.
     }
@@ -270,6 +271,39 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.favToast.isHidden = true
                 }
             }
+    }
+    
+    func checkFav(city: String, state: String) {
+        let backendUrl = "https://radionimbus.wl.r.appspot.com/getfavorites"
+        AF.request(backendUrl, method: .get).responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                if let favorites = data as? [[String: Any]] {
+                    let isFavorite = favorites.contains { favorite in
+                        if let favoriteCity = favorite["city"] as? String,
+                           let favoriteState = favorite["state"] as? String {
+                            return favoriteCity == city && favoriteState == state
+                        }
+                        return false
+                    }
+                    if isFavorite {
+                        print("\(city), \(state) is in the favorites list!")
+                        self.isFav=true
+                        self.favButton.setImage(UIImage(named: "close-circle"), for: .normal)
+                        
+                    } else {
+                        print("\(city), \(state) is not in the favorites list.")
+                        self.isFav=false
+                        self.favButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+                        
+                    }
+                } else {
+                    print("Unable to parse favorites")
+                }
+            case .failure(let error):
+                print("Error fetching favorites: \(error)")
+            }
+        }
     }
 
     

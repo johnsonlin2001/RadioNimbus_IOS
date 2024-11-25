@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Alamofire
+
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView==weeklyTable){
@@ -73,6 +75,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var weatherData: [String: Any]?
     var city: String?
+    var state: String?
+    var currentTemp: Double?
+    var currentStatus: String?
+    var isFav: Bool = false
+    var currentLat: Double?
+    var currentLong: Double?
     
     var weeklyData: [[String: Any]] = []
     
@@ -106,6 +114,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBOutlet weak var weeklyTable: UITableView!
+    
+    @IBOutlet weak var favButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,10 +167,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let currentData = intervals?.first
         let values = currentData?["values"] as? [String: Any]
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
+        self.currentTemp = currentTemperature
         self.weeklyTable.reloadData()
         temperatureLabel.text = "\(currentTemperature)°F"
         let weatherCode = values?["weatherCode"] as? Int ?? 0
         let currentStatus = weatherCodes[weatherCode]
+        self.currentStatus = currentStatus
         weatherStatusLabel.text = currentStatus
         weatherImage.image = UIImage(named: currentStatus ?? "Clear")
         let currentHumidity = values?["humidity"] as? Int ?? 0
@@ -171,6 +183,55 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         visibilityLabel.text = "\(currentVisibility) mi"
         let currentPressure = values?["pressureSeaLevel"] as? Double ?? 0
         pressureLabel.text = "\(currentPressure) inHg"
+        
+    }
+    
+    @IBAction func composeTweet(_ sender: UIBarButtonItem) {
+
+        let tweetText = "The current temperature at \(self.city ?? "") is \(self.currentTemp ?? 0)°F. The weather conditions are \(self.currentStatus ?? "")."
+        let hashtags = "CSCI571WeatherSearch"
+
+        let tweet = tweetText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let hashtagParam = hashtags.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let tweetLink = "https://twitter.com/intent/tweet?text=\(tweet)&hashtags=\(hashtagParam)"
+
+        let url = URL(string: tweetLink)!
+        UIApplication.shared.open(url)
+        
+    }
+    
+    
+    @IBAction func favClick(_ sender: Any) {
+        if(self.isFav){
+            favButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+        }else{
+            favButton.setImage(UIImage(named: "close-circle"), for: .normal)
+            print(self.city)
+            print(self.state)
+            self.addFav(for: self.city ?? "", for: self.state ?? "", for: self.currentLat ?? 0, for: self.currentLong ?? 0)
+        }
+        self.isFav = !self.isFav
+        
+        
+    }
+    
+    func addFav(for city: String, for state: String, for lat: Double, for long: Double){
+        print("Sending to backend:")
+        print("City: \(city), State: \(state), Lat: \(lat), Long: \(long)")
+        let backendUrl = "https://radionimbus.wl.r.appspot.com/addfavorites"
+        let queryParams: [String: Any] = ["city": city, "state": state,"lat": lat, "long": long]
+        
+        let encoder = URLEncoding(destination: .queryString)
+        
+        AF.request(backendUrl, method: .post, parameters: queryParams, encoding: encoder).validate().responseJSON { response in
+            switch response.result {
+            case .success(_):
+                print("succesfully added to favorites")
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
         
     }
     

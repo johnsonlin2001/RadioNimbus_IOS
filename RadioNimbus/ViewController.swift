@@ -19,9 +19,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var latitude: Double?
     var longitude: Double?
     
+    var selectedLat: Double?
+    var selectedLong: Double?
+    
     var weatherData: [String: Any]?
     
     var selectedCity: String?
+    var selectedState: String?
 
     
     var scheduleFetch: DispatchWorkItem?
@@ -143,6 +147,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var weeklyTable: UITableView!
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -211,7 +216,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             // Pass data to the ResultsViewController
             let resultsView = segue.destination as? ResultsViewController
             resultsView?.city = self.selectedCity
+            resultsView?.state = self.selectedState
             resultsView?.weatherData = self.weatherData
+            resultsView?.currentLat = self.selectedLat
+            resultsView?.currentLong = self.selectedLong
         }
     }
     
@@ -221,6 +229,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             
             citySearchBar.text = selectedLocation.city
             self.selectedCity = selectedLocation.city
+            self.selectedState = selectedLocation.state
             
             suggestions = []
             cityDropDown.reloadData()
@@ -234,10 +243,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     return
                 }
                 
+                self.selectedLat = latitude
+                self.selectedLong = longitude
                 self.getWeatherData1(for: latitude, for: longitude){weatherData in
                     SwiftSpinner.hide()
                     
-                    if let data = weatherData {
+                    if weatherData != nil {
                         self.weatherData = weatherData
                         DispatchQueue.main.async {
                             print("Performing segue to results view")

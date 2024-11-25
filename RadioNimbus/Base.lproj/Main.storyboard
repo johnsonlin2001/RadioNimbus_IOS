@@ -495,6 +495,9 @@
                                 <rect key="frame" x="332" y="96" width="54" height="73"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus-circle" title=""/>
+                                <connections>
+                                    <action selector="favClick:" destination="Jnd-17-qHc" eventType="touchUpInside" id="k6i-Um-1dM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qbu-TS-7dq"/>
@@ -517,10 +520,14 @@
                     <navigationItem key="navigationItem" id="XJ0-tN-GqM">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="twitter" id="OoS-fC-ZQb">
                             <color key="tintColor" systemColor="linkColor"/>
+                            <connections>
+                                <action selector="composeTweet:" destination="Jnd-17-qHc" id="hLw-R6-wm9"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="cKd-FV-5S8" id="Rbi-4k-frK"/>
+                        <outlet property="favButton" destination="Xd7-Hn-VT1" id="zin-fS-szz"/>
                         <outlet property="humidityLabel" destination="0LN-1M-0hG" id="OWS-Ya-tBx"/>
                         <outlet property="pressureLabel" destination="7VM-54-EWF" id="3B2-kW-gdv"/>
                         <outlet property="subview1" destination="gf9-Zv-FCN" id="MVX-2L-8X5"/>

@@ -499,6 +499,29 @@
                                     <action selector="favClick:" destination="Jnd-17-qHc" eventType="touchUpInside" id="k6i-Um-1dM"/>
                                 </connections>
                             </button>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcu-XO-VNq">
+                                <rect key="frame" x="58" y="775.66666666666663" width="277" height="42.333333333333371"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfO-cK-kow">
+                                        <rect key="frame" x="8" y="7.9999999999999982" width="256" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstItem="nfO-cK-kow" firstAttribute="leading" secondItem="vcu-XO-VNq" secondAttribute="leading" constant="8" id="3Dr-Vn-L3V"/>
+                                    <constraint firstAttribute="trailing" secondItem="nfO-cK-kow" secondAttribute="trailing" constant="13" id="D8p-UJ-B3r"/>
+                                    <constraint firstItem="nfO-cK-kow" firstAttribute="top" secondItem="vcu-XO-VNq" secondAttribute="top" constant="8" id="DeT-QY-P4m"/>
+                                    <constraint firstAttribute="bottom" secondItem="nfO-cK-kow" secondAttribute="bottom" constant="14" id="gbU-BE-63E"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qbu-TS-7dq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -506,12 +529,15 @@
                             <constraint firstItem="Qbu-TS-7dq" firstAttribute="bottom" secondItem="Pz1-o9-9VM" secondAttribute="bottom" constant="28" id="2OT-4O-3QD"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="leading" secondItem="BXb-Wj-985" secondAttribute="leading" id="3Aq-qT-dcL"/>
                             <constraint firstAttribute="trailing" secondItem="Lcl-8U-r7b" secondAttribute="trailing" id="3E4-yh-tee"/>
+                            <constraint firstItem="vcu-XO-VNq" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="58" id="4m7-xY-zqW"/>
                             <constraint firstItem="Ofp-Hp-llm" firstAttribute="top" secondItem="gf9-Zv-FCN" secondAttribute="bottom" constant="40" id="896-Ac-Gfk"/>
+                            <constraint firstItem="Qbu-TS-7dq" firstAttribute="trailing" secondItem="vcu-XO-VNq" secondAttribute="trailing" constant="58" id="Fdc-7j-7mT"/>
                             <constraint firstItem="Xd7-Hn-VT1" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="332" id="UTE-Ig-Op6"/>
                             <constraint firstItem="Xd7-Hn-VT1" firstAttribute="top" secondItem="BXb-Wj-985" secondAttribute="top" constant="88" id="bb2-hk-GjW"/>
                             <constraint firstAttribute="bottom" secondItem="Lcl-8U-r7b" secondAttribute="bottom" id="bo8-jo-Xj4"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="leading" secondItem="Qbu-TS-7dq" secondAttribute="leading" constant="15" id="fAA-xD-lyY"/>
                             <constraint firstItem="Qbu-TS-7dq" firstAttribute="trailing" secondItem="Pz1-o9-9VM" secondAttribute="trailing" constant="16" id="fre-XP-epB"/>
+                            <constraint firstItem="vcu-XO-VNq" firstAttribute="bottom" secondItem="Qbu-TS-7dq" secondAttribute="bottom" id="nf7-IZ-z1a"/>
                             <constraint firstItem="Lcl-8U-r7b" firstAttribute="top" secondItem="BXb-Wj-985" secondAttribute="top" id="nsW-Rj-9Bj"/>
                             <constraint firstItem="Pz1-o9-9VM" firstAttribute="top" secondItem="Ofp-Hp-llm" secondAttribute="bottom" constant="24.329999999999998" id="nt9-iZ-s2A"/>
                             <constraint firstItem="Ofp-Hp-llm" firstAttribute="top" secondItem="Xd7-Hn-VT1" secondAttribute="bottom" constant="212" id="ofM-kA-rN3"/>
@@ -528,10 +554,12 @@
                     <connections>
                         <outlet property="cityLabel" destination="cKd-FV-5S8" id="Rbi-4k-frK"/>
                         <outlet property="favButton" destination="Xd7-Hn-VT1" id="zin-fS-szz"/>
+                        <outlet property="favToast" destination="vcu-XO-VNq" id="7Fl-Cz-F0c"/>
                         <outlet property="humidityLabel" destination="0LN-1M-0hG" id="OWS-Ya-tBx"/>
                         <outlet property="pressureLabel" destination="7VM-54-EWF" id="3B2-kW-gdv"/>
                         <outlet property="subview1" destination="gf9-Zv-FCN" id="MVX-2L-8X5"/>
                         <outlet property="temperatureLabel" destination="Ap0-qV-Yav" id="DGL-ie-Qtb"/>
+                        <outlet property="toastMessage" destination="nfO-cK-kow" id="6G8-me-OiK"/>
                         <outlet property="visibilityLabel" destination="srd-Uz-GR3" id="tEX-au-N8M"/>
                         <outlet property="weatherImage" destination="rYB-Ka-GXh" id="AnQ-af-9go"/>
                         <outlet property="weatherStatusLabel" destination="APj-6S-n79" id="G9C-cf-Vp9"/>
@@ -572,6 +600,9 @@
         <image name="sun-rise" width="24" height="24"/>
         <image name="sun-set" width="24" height="24"/>
         <image name="twitter" width="16" height="16"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

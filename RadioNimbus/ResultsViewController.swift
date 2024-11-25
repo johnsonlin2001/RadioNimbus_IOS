@@ -117,6 +117,10 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var favButton: UIButton!
     
+    @IBOutlet weak var favToast: UIView!
+    
+    @IBOutlet weak var toastMessage: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
@@ -205,9 +209,11 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if(self.isFav){
             favButton.setImage(UIImage(named: "plus-circle"), for: .normal)
             self.deleteFav(for: self.city ?? "", for: self.state ?? "")
+            self.showToastMessage(message: "\(self.city ?? "") was removed from the Favorites list")
         }else{
             favButton.setImage(UIImage(named: "close-circle"), for: .normal)
             self.addFav(for: self.city ?? "", for: self.state ?? "", for: self.currentLat ?? 0, for: self.currentLong ?? 0)
+            self.showToastMessage(message: "\(self.city ?? "") was added to the Favorites list")
         }
         self.isFav = !self.isFav
         
@@ -250,6 +256,22 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
     }
+    
+    func showToastMessage(message: String) {
+        toastMessage.text = message
+        favToast.alpha = 1.0
+        favToast.isHidden = false
+        UIView.animate(withDuration: 0.7, animations: {
+            self.favToast.alpha = 0.7
+            }) { _ in
+                UIView.animate(withDuration: 0.7, delay: 2.2, options: .curveEaseOut, animations: {
+                    self.favToast.alpha = 0.0
+                }) { _ in
+                    self.favToast.isHidden = true
+                }
+            }
+    }
+
     
 
     /*

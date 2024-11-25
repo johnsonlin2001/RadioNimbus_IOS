@@ -204,10 +204,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func favClick(_ sender: Any) {
         if(self.isFav){
             favButton.setImage(UIImage(named: "plus-circle"), for: .normal)
+            self.deleteFav(for: self.city ?? "", for: self.state ?? "")
         }else{
             favButton.setImage(UIImage(named: "close-circle"), for: .normal)
-            print(self.city)
-            print(self.state)
             self.addFav(for: self.city ?? "", for: self.state ?? "", for: self.currentLat ?? 0, for: self.currentLong ?? 0)
         }
         self.isFav = !self.isFav
@@ -232,6 +231,23 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
+    }
+    
+    func deleteFav(for city: String, for state: String){
+        print("Sending to backend:")
+        print("City: \(city), State: \(state)")
+        let backendUrl = "https://radionimbus.wl.r.appspot.com/deleteFavorite"
+        let queryParams: [String: Any] = ["city": city, "state": state]
+        
+        let encoder = URLEncoding(destination: .queryString)
+        
+        AF.request(backendUrl, method: .delete, parameters: queryParams, encoding: encoder).validate().responseJSON { response in
+            switch response.result {
+            case .success(_): break
+            case .failure(let error):
+                print(error)
+            }
+        }
         
     }
     

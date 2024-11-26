@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03438C552CF1A032003E824B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03438C542CF1A032003E824B /* ResultsViewController.swift */; };
+		03438CB62CF5A44D003E824B /* TodayTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03438CB52CF5A44D003E824B /* TodayTabController.swift */; };
 		0388BE822CEB1845007444AF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE812CEB1845007444AF /* Alamofire */; };
 		0388BE852CEB1864007444AF /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE842CEB1864007444AF /* Toast */; };
 		0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE872CEB18E7007444AF /* SwiftSpinner */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		03438C542CF1A032003E824B /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = RadioNimbus/ResultsViewController.swift; sourceTree = "<group>"; };
+		03438CB52CF5A44D003E824B /* TodayTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodayTabController.swift; path = RadioNimbus/TodayTabController.swift; sourceTree = "<group>"; };
 		0388BE482CEB1559007444AF /* RadioNimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioNimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0388BE612CEB155C007444AF /* RadioNimbusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioNimbusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0388BE6B2CEB155C007444AF /* RadioNimbusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioNimbusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		0388BE3F2CEB1559007444AF = {
 			isa = PBXGroup;
 			children = (
+				03438CB52CF5A44D003E824B /* TodayTabController.swift */,
 				03438C542CF1A032003E824B /* ResultsViewController.swift */,
 				0388BE4A2CEB1559007444AF /* RadioNimbus */,
 				0388BE642CEB155C007444AF /* RadioNimbusTests */,
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03438C552CF1A032003E824B /* ResultsViewController.swift in Sources */,
+				03438CB62CF5A44D003E824B /* TodayTabController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

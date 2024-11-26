@@ -147,6 +147,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var weeklyTable: UITableView!
     
+    @IBAction func tapDetails(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "detailsSegue", sender: self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

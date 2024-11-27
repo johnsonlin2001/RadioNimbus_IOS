@@ -337,6 +337,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="15"/>
@@ -348,6 +349,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Hey-7T-qRf" appends="YES" id="Fol-nw-AAs"/>
+                                </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ofp-Hp-llm">
                                 <rect key="frame" x="6" y="373" width="380" height="156.66666666666663"/>
@@ -576,9 +580,15 @@
                         <outlet property="weatherStatusLabel" destination="APj-6S-n79" id="G9C-cf-Vp9"/>
                         <outlet property="weeklyTable" destination="Pz1-o9-9VM" id="6dV-mT-DZO"/>
                         <outlet property="windspeedLabel" destination="ELN-eP-v9D" id="Vfh-3L-giG"/>
+                        <segue destination="39Y-sx-4xc" kind="show" identifier="detailsSegue" id="Fal-en-CGa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M71-mV-H1q" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Hey-7T-qRf">
+                    <connections>
+                        <action selector="tapDetails:" destination="Jnd-17-qHc" id="1KZ-xl-VsN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1678.6259541984732" y="-54.225352112676056"/>
         </scene>
@@ -998,6 +1008,9 @@
             <point key="canvasLocation" x="14.503816793893129" y="-65.492957746478879"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fal-en-CGa"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="App_background" width="1080" height="1920"/>
         <image name="CloudCover" width="80" height="80"/>

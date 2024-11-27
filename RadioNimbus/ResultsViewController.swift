@@ -76,11 +76,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var weatherData: [String: Any]?
     var city: String?
     var state: String?
-    var currentTemp: Double?
+    var currentTemp: Int?
     var currentStatus: String?
     var isFav: Bool = false
     var currentLat: Double?
     var currentLong: Double?
+    var todayData: [String: Any]?
     
     var weeklyData: [[String: Any]] = []
     
@@ -124,7 +125,6 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        print(city)
         self.title = city
         cityLabel.text = city
         weeklyTable.delegate = self
@@ -172,8 +172,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.weeklyData = intervals!
         let currentData = intervals?.first
         let values = currentData?["values"] as? [String: Any]
+        self.todayData = values
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
-        self.currentTemp = currentTemperature
+        self.currentTemp = Int(currentTemperature.rounded())
         self.weeklyTable.reloadData()
         temperatureLabel.text = "\(currentTemperature)°F"
         let weatherCode = values?["weatherCode"] as? Int ?? 0
@@ -181,8 +182,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.currentStatus = currentStatus
         weatherStatusLabel.text = currentStatus
         weatherImage.image = UIImage(named: currentStatus ?? "Clear")
-        let currentHumidity = values?["humidity"] as? Int ?? 0
-        humidityLabel.text = "\(currentHumidity) %"
+        let currentHumidity = values?["humidity"] as? Double ?? 0
+        humidityLabel.text = "\(Int(currentHumidity.rounded())) %"
         let currentWindspeed = values?["windSpeed"] as? Double ?? 0
         windspeedLabel.text = "\(currentWindspeed) mph"
         let currentVisibility = values?["visibility"] as? Double ?? 0
@@ -204,6 +205,29 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let url = URL(string: tweetLink)!
         UIApplication.shared.open(url)
         
+    }
+    
+    @IBAction func tapDetails(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "detailsSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailsSegue"{
+            let detailsView = segue.destination as? detailsTabBarController
+            detailsView?.city = self.city
+            detailsView?.currentTemp = self.currentTemp
+            detailsView?.currentStatus = self.currentStatus
+            if let viewControllers = detailsView!.viewControllers {
+            for view in viewControllers {
+                if let todayTab = view as? TodayTabController {
+                    todayTab.city = self.city
+                    todayTab.data = self.todayData
+                    
+                }
+            }
+            }
+            
+        }
     }
     
     

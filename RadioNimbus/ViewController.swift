@@ -409,8 +409,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         statusLabel.text = currentStatus
         self.currentStatus = currentStatus
         weatherImage.image = UIImage(named: currentStatus ?? "Clear")
-        let currentHumidity = values?["humidity"] as? Int ?? 0
-        humidityLabel.text = "\(currentHumidity) %"
+        let currentHumidity = values?["humidity"] as? Double ?? 0
+        humidityLabel.text = "\(Int(currentHumidity.rounded())) %"
         let currentWindspeed = values?["windSpeed"] as? Double ?? 0
         windspeedLabel.text = "\(currentWindspeed) mph"
         let currentVisibility = values?["visibility"] as? Double ?? 0

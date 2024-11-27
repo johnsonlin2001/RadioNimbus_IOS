@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -922,6 +923,8 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Today" image="Today_Tab" id="HDi-sb-WsJ"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="UVLabel" destination="d92-P4-mm8" id="mT8-dB-N7S"/>
                         <outlet property="cloudLabel" destination="wIN-Jz-oCz" id="0Mc-Ob-Fso"/>
@@ -948,11 +951,18 @@
             </objects>
             <point key="canvasLocation" x="1580.9160305343512" y="614.78873239436621"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Details Tab Bar Controller-->
         <scene sceneID="zq3-kU-7FE">
             <objects>
-                <tabBarController id="39Y-sx-4xc" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="thr-sU-jSE"/>
+                <tabBarController id="39Y-sx-4xc" customClass="detailsTabBarController" customModule="RadioNimbus" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="thr-sU-jSE">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="twitter" id="WnK-s8-Z4A">
+                            <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="composeTweet:" destination="39Y-sx-4xc" id="AOk-cA-zBB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pwx-ey-o8n">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1006,6 +1016,9 @@
         <image name="sun-rise" width="24" height="24"/>
         <image name="sun-set" width="24" height="24"/>
         <image name="twitter" width="16" height="16"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

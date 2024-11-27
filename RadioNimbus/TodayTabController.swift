@@ -46,6 +46,8 @@ class TodayTabController: UIViewController {
         
         self.tabBarController?.tabBar.barTintColor = .white
         self.tabBarController?.tabBar.isTranslucent = false
+        
+    
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

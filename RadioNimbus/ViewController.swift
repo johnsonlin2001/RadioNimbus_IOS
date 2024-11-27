@@ -30,6 +30,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var currentCity: String?
     
     var todayData: [String: Any]?
+    var currentTemp: Int?
+    var currentStatus: String?
 
     
     var scheduleFetch: DispatchWorkItem?
@@ -231,7 +233,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         }
         
         else if segue.identifier == "detailsSegue"{
-            let detailsView = segue.destination as? UITabBarController
+            let detailsView = segue.destination as? detailsTabBarController
+            detailsView?.city = self.currentCity
+            detailsView?.currentTemp = self.currentTemp
+            detailsView?.currentStatus = self.currentStatus
             if let viewControllers = detailsView!.viewControllers {
             for view in viewControllers {
                 if let todayTab = view as? TodayTabController { 
@@ -398,9 +403,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.todayData = values
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
         temperatureLabel.text = "\(currentTemperature)°F"
+        self.currentTemp = Int(currentTemperature.rounded())
         let weatherCode = values?["weatherCode"] as? Int ?? 0
         let currentStatus = weatherCodes[weatherCode]
         statusLabel.text = currentStatus
+        self.currentStatus = currentStatus
         weatherImage.image = UIImage(named: currentStatus ?? "Clear")
         let currentHumidity = values?["humidity"] as? Int ?? 0
         humidityLabel.text = "\(currentHumidity) %"

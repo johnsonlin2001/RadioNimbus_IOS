@@ -124,6 +124,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        print(city)
         self.title = city
         cityLabel.text = city
         weeklyTable.delegate = self

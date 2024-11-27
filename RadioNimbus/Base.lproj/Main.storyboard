@@ -923,6 +923,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Today" image="Today_Tab" id="HDi-sb-WsJ"/>
                     <connections>
+                        <outlet property="UVLabel" destination="d92-P4-mm8" id="mT8-dB-N7S"/>
+                        <outlet property="cloudLabel" destination="wIN-Jz-oCz" id="0Mc-Ob-Fso"/>
+                        <outlet property="humidityLabel" destination="Tfm-CE-ay1" id="tYY-ul-xAg"/>
+                        <outlet property="precLabel" destination="m2r-Cd-UY7" id="62G-tr-G7q"/>
+                        <outlet property="pressureLabel" destination="uzW-hK-Zen" id="lO7-Dc-1Xf"/>
+                        <outlet property="statusImage" destination="AY0-nh-NdI" id="On5-dR-4or"/>
+                        <outlet property="statusLabel" destination="cYP-4V-5cQ" id="owc-gY-oNN"/>
                         <outlet property="sub1" destination="umj-zb-Nz2" id="siq-hi-CTc"/>
                         <outlet property="sub2" destination="M87-LI-oBY" id="4EL-gt-Sra"/>
                         <outlet property="sub3" destination="tyL-PK-Vu8" id="IcA-uL-Bct"/>
@@ -932,6 +939,9 @@
                         <outlet property="sub7" destination="5PX-5q-o12" id="DUg-fS-0pc"/>
                         <outlet property="sub8" destination="0fr-TT-Lux" id="DNW-na-R5Z"/>
                         <outlet property="sub9" destination="HQw-bJ-b0K" id="Fne-wm-7Rs"/>
+                        <outlet property="temperatureLabel" destination="b0e-Am-GgN" id="AO1-1Z-2Oe"/>
+                        <outlet property="visibilityLabel" destination="dXb-j2-HgQ" id="ctL-df-3SJ"/>
+                        <outlet property="windLabel" destination="nNU-A0-u0D" id="6kh-vL-bWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbH-pP-wGh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

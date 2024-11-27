@@ -50,7 +50,15 @@ class TodayTabController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.topItem?.title = city
+        self.title = city!
+        print(self.data)
+        updateValues(with: self.data!)
     }
+    
+    var city: String?
+    
+    var data: [String: Any]?
     
     
     @IBOutlet weak var sub1: UIView!
@@ -70,6 +78,78 @@ class TodayTabController: UIViewController {
     @IBOutlet weak var sub8: UIView!
     
     @IBOutlet weak var sub9: UIView!
+    
+    @IBOutlet weak var windLabel: UILabel!
+    
+    @IBOutlet weak var pressureLabel: UILabel!
+    
+    @IBOutlet weak var precLabel: UILabel!
+    
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var statusImage: UIImageView!
+    
+    @IBOutlet weak var humidityLabel: UILabel!
+    
+    @IBOutlet weak var visibilityLabel: UILabel!
+    
+    @IBOutlet weak var cloudLabel: UILabel!
+    
+    @IBOutlet weak var UVLabel: UILabel!
+    
+    let weatherCodes: [Int: String] = [
+        0: "Unknown",
+        1000: "Clear",
+        1100: "Mostly Clear",
+        1101: "Partly Cloudy",
+        1102: "Mostly Cloudy",
+        1001: "Cloudy",
+        2000: "Fog",
+        2100: "Light Fog",
+        4000: "Drizzle",
+        4001: "Rain",
+        4200: "Light Rain",
+        4201: "Heavy Rain",
+        5000: "Snow",
+        5001: "Flurries",
+        5100: "Light Snow",
+        5101: "Heavy Snow",
+        6000: "Freezing Drizzle",
+        6001: "Freezing Rain",
+        6200: "Light Freezing Rain",
+        6201: "Heavy Freezing Rain",
+        7000: "Ice Pellets",
+        7101: "Heavy Ice Pellets",
+        7102: "Light Ice Pellets",
+        8000: "Thunderstorm"
+    ]
+    
+    func updateValues(with weatherData:[String: Any]){
+        let currentTemperature = weatherData["temperature"] as? Double ?? 0
+        temperatureLabel.text = "\(Int(currentTemperature.rounded()))°F"
+        let currentHumidity = weatherData["humidity"] as? Int ?? 0
+        humidityLabel.text = "\(currentHumidity) %"
+        let currentWindspeed = weatherData["windSpeed"] as? Double ?? 0
+        windLabel.text = "\(currentWindspeed) mph"
+        let currentPressure = weatherData["pressureSeaLevel"] as? Double ?? 0
+        pressureLabel.text = "\(currentPressure) inHg"
+        let currentPrec = weatherData["precipitationProbability"] as? Int ?? 0
+        precLabel.text = "\(currentPrec) %"
+        let currentVis = weatherData["visibility"] as? Double ?? 0
+        visibilityLabel.text = "\(currentVis) mi"
+        let currentCCover = weatherData["cloudCover"] as? Int ?? 0
+        cloudLabel.text = "\(currentCCover) %"
+        let currentUV = weatherData["uvIndex"] as? Int ?? 0
+        UVLabel.text = "\(currentUV)"
+        let weatherCode = weatherData["weatherCode"] as? Int ?? 0
+        let currentStatus = weatherCodes[weatherCode]
+        statusLabel.text = currentStatus
+        statusImage.image = UIImage(named: currentStatus ?? "Clear")
+        
+        
+    }
     
     
     /*

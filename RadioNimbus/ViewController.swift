@@ -26,6 +26,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     var selectedCity: String?
     var selectedState: String?
+    
+    var currentCity: String?
+    
+    var todayData: [String: Any]?
 
     
     var scheduleFetch: DispatchWorkItem?
@@ -191,6 +195,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             let place = place?.first
             let city = place?.locality
             self.locationLabel.text = city
+            self.currentCity = city
                 }
 
 
@@ -224,6 +229,22 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             resultsView?.currentLat = self.selectedLat
             resultsView?.currentLong = self.selectedLong
         }
+        
+        else if segue.identifier == "detailsSegue"{
+            let detailsView = segue.destination as? UITabBarController
+            if let viewControllers = detailsView!.viewControllers {
+            for view in viewControllers {
+                if let todayTab = view as? TodayTabController { 
+                    todayTab.city = self.currentCity
+                    todayTab.data = self.todayData
+                    
+                }
+            }
+            }
+            
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -374,6 +395,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.weeklyTable.reloadData()
         let currentData = intervals?.first
         let values = currentData?["values"] as? [String: Any]
+        self.todayData = values
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
         temperatureLabel.text = "\(currentTemperature)°F"
         let weatherCode = values?["weatherCode"] as? Int ?? 0

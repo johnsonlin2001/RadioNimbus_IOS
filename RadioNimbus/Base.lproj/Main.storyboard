@@ -603,21 +603,60 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="App_background" translatesAutoresizingMaskIntoConstraints="NO" id="eFo-NB-gX3">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85o-Ja-Ezg">
+                                <rect key="frame" x="16" y="141" width="361" height="230"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QND-k3-Hon">
+                                        <rect key="frame" x="8" y="51" width="144" height="136"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex4-k5-S4H">
+                                        <rect key="frame" x="215" y="51" width="107" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmT-fU-ruG">
+                                        <rect key="frame" x="215" y="118" width="107" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="let-bd-CMr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="let-bd-CMr" firstAttribute="bottom" secondItem="85o-Ja-Ezg" secondAttribute="bottom" constant="398" id="2Ef-4V-4Ys"/>
                             <constraint firstItem="eFo-NB-gX3" firstAttribute="trailing" secondItem="let-bd-CMr" secondAttribute="trailing" id="3NW-yn-zP5"/>
+                            <constraint firstItem="85o-Ja-Ezg" firstAttribute="top" secondItem="let-bd-CMr" secondAttribute="top" constant="38" id="7Tu-bb-aGH"/>
+                            <constraint firstItem="let-bd-CMr" firstAttribute="trailing" secondItem="85o-Ja-Ezg" secondAttribute="trailing" constant="16" id="9St-Wa-VZM"/>
+                            <constraint firstItem="85o-Ja-Ezg" firstAttribute="leading" secondItem="let-bd-CMr" secondAttribute="leading" constant="16" id="F6B-wS-YEx"/>
                             <constraint firstItem="eFo-NB-gX3" firstAttribute="leading" secondItem="let-bd-CMr" secondAttribute="leading" id="RLi-XZ-Iqn"/>
                             <constraint firstItem="eFo-NB-gX3" firstAttribute="top" secondItem="UVG-3f-Dzw" secondAttribute="top" id="V2I-gR-LPl"/>
                             <constraint firstAttribute="bottom" secondItem="eFo-NB-gX3" secondAttribute="bottom" id="vwP-gw-nEO"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Weekly" image="Weekly_Tab" id="bW8-WY-1zW"/>
+                    <connections>
+                        <outlet property="statusImg" destination="QND-k3-Hon" id="xk0-nK-gjX"/>
+                        <outlet property="statusLabel" destination="ex4-k5-S4H" id="Go0-ED-NqV"/>
+                        <outlet property="tempLabel" destination="LmT-fU-ruG" id="C7X-SW-4I3"/>
+                        <outlet property="topview" destination="85o-Ja-Ezg" id="Y1I-0H-6tQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tm-9T-D9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="1315"/>
+            <point key="canvasLocation" x="1754.9618320610687" y="1314.7887323943662"/>
         </scene>
         <!--WEATHER DATA-->
         <scene sceneID="1nF-09-bks">

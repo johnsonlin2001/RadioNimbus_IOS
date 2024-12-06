@@ -244,6 +244,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     todayTab.data = self.todayData
                     
                 }
+                else if let weeklyTab = view as? weeklyTabController{
+                    weeklyTab.currentTemp = currentTemp
+                    weeklyTab.currentStatus = currentStatus
+                }
             }
             }
             

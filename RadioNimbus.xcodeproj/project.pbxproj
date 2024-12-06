@@ -10,6 +10,7 @@
 		03438C552CF1A032003E824B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03438C542CF1A032003E824B /* ResultsViewController.swift */; };
 		03438CB62CF5A44D003E824B /* TodayTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03438CB52CF5A44D003E824B /* TodayTabController.swift */; };
 		036364482CF7DBF2005985D1 /* detailsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036364472CF7DBF2005985D1 /* detailsTabBarController.swift */; };
+		0363644D2D02D9B2005985D1 /* Highcharts in Frameworks */ = {isa = PBXBuildFile; productRef = 0363644C2D02D9B2005985D1 /* Highcharts */; };
 		0388BE822CEB1845007444AF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE812CEB1845007444AF /* Alamofire */; };
 		0388BE852CEB1864007444AF /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE842CEB1864007444AF /* Toast */; };
 		0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE872CEB18E7007444AF /* SwiftSpinner */; };
@@ -80,6 +81,7 @@
 				0388BE852CEB1864007444AF /* Toast in Frameworks */,
 				0388BE822CEB1845007444AF /* Alamofire in Frameworks */,
 				0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */,
+				0363644D2D02D9B2005985D1 /* Highcharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +148,7 @@
 				0388BE812CEB1845007444AF /* Alamofire */,
 				0388BE842CEB1864007444AF /* Toast */,
 				0388BE872CEB18E7007444AF /* SwiftSpinner */,
+				0363644C2D02D9B2005985D1 /* Highcharts */,
 			);
 			productName = RadioNimbus;
 			productReference = 0388BE482CEB1559007444AF /* RadioNimbus.app */;
@@ -234,6 +237,7 @@
 				0388BE802CEB1845007444AF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0388BE832CEB1864007444AF /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				0388BE862CEB18E7007444AF /* XCRemoteSwiftPackageReference "SwiftSpinner" */,
+				0363644B2D02D9B1005985D1 /* XCRemoteSwiftPackageReference "highcharts-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0388BE492CEB1559007444AF /* Products */;
@@ -603,6 +607,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0363644B2D02D9B1005985D1 /* XCRemoteSwiftPackageReference "highcharts-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/highcharts/highcharts-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.1;
+			};
+		};
 		0388BE7F2CEB15EB007444AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
@@ -638,6 +650,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0363644C2D02D9B2005985D1 /* Highcharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0363644B2D02D9B1005985D1 /* XCRemoteSwiftPackageReference "highcharts-ios" */;
+			productName = Highcharts;
+		};
 		0388BE812CEB1845007444AF /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0388BE802CEB1845007444AF /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -595,18 +595,29 @@
         <!--Weekly-->
         <scene sceneID="LVO-WH-7yU">
             <objects>
-                <viewController id="QGe-T6-f25" sceneMemberID="viewController">
+                <viewController id="QGe-T6-f25" customClass="weeklyTabController" customModule="RadioNimbus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UVG-3f-Dzw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="App_background" translatesAutoresizingMaskIntoConstraints="NO" id="eFo-NB-gX3">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="let-bd-CMr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eFo-NB-gX3" firstAttribute="trailing" secondItem="let-bd-CMr" secondAttribute="trailing" id="3NW-yn-zP5"/>
+                            <constraint firstItem="eFo-NB-gX3" firstAttribute="leading" secondItem="let-bd-CMr" secondAttribute="leading" id="RLi-XZ-Iqn"/>
+                            <constraint firstItem="eFo-NB-gX3" firstAttribute="top" secondItem="UVG-3f-Dzw" secondAttribute="top" id="V2I-gR-LPl"/>
+                            <constraint firstAttribute="bottom" secondItem="eFo-NB-gX3" secondAttribute="bottom" id="vwP-gw-nEO"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Weekly" image="Weekly_Tab" id="bW8-WY-1zW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tm-9T-D9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1582" y="1223"/>
+            <point key="canvasLocation" x="1755" y="1315"/>
         </scene>
         <!--WEATHER DATA-->
         <scene sceneID="1nF-09-bks">

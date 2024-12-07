@@ -19,8 +19,33 @@ class weeklyTabController: UIViewController {
     
     
     @IBOutlet weak var chartSub: UIView!
+    
+    var weeklyData: [[String: Any]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        var temperatureData: [[Any]] = []
+        print(self.weeklyData)
+        for day in weeklyData {
+            if let startTime = day["startTime"] as? String,
+               let values = day["values"] as? [String: Any],
+               let tempLow = values["temperatureMin"] as? Double,
+               let tempHigh = values["temperatureMax"] as? Double {
+                
+                // Convert startTime to Date
+                let inputDateFormatter = ISO8601DateFormatter()
+                if let date = inputDateFormatter.date(from: startTime) {
+                    // Convert date to UTC timestamp
+                    let calendar = Calendar(identifier: .gregorian)
+                    let components = calendar.dateComponents([.year, .month, .day], from: date)
+                    if let utcDate = calendar.date(from: components) {
+                        let timestamp = utcDate.timeIntervalSince1970 * 1000 // Convert to milliseconds
+                        // Append the processed data
+                        temperatureData.append([timestamp, tempLow, tempHigh])
+                    }
+                }
+            }
+        }
 
         // Do any additional setup after loading the view.
         self.tabBarController?.tabBar.barTintColor = .white
@@ -75,17 +100,13 @@ class weeklyTabController: UIViewController {
         
         // Disable legend
         let legend = HILegend()
-        legend.enabled = NSNumber(value: false)
+        legend.enabled = false
         options.legend = legend
         
         // Series configuration
         let series = HIArearange()
-        series.name = "Temperatures"
-        series.data = [
-            [1668864000000, 52, 62],  // Example data: [timestamp, minTemp, maxTemp]
-            [1668950400000, 54, 64],
-            [1669036800000, 50, 60]
-        ]
+        series.name = ""
+        series.data = temperatureData
         series.color = HIColor()
         options.series = [series]
         

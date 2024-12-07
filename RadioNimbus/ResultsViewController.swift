@@ -227,6 +227,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 else if let weeklyTab = view as? weeklyTabController{
                     weeklyTab.currentTemp = currentTemp
                     weeklyTab.currentStatus = currentStatus
+                    weeklyTab.weeklyData = self.weeklyData
                 }
             }
             }

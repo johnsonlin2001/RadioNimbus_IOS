@@ -739,30 +739,31 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niT-zN-Pcs">
-                                <rect key="frame" x="0.0" y="362" width="393" height="334"/>
+                                <rect key="frame" x="0.0" y="330" width="393" height="427"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="saN-Id-u6b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="niT-zN-Pcs" firstAttribute="top" secondItem="svp-6k-D0i" secondAttribute="bottom" constant="49" id="0A7-KK-YmU"/>
                             <constraint firstItem="saN-Id-u6b" firstAttribute="bottom" secondItem="svp-6k-D0i" secondAttribute="bottom" constant="456" id="1sP-tD-a88"/>
+                            <constraint firstItem="niT-zN-Pcs" firstAttribute="top" secondItem="svp-6k-D0i" secondAttribute="bottom" constant="17" id="QAA-mm-ROs"/>
                             <constraint firstItem="DpI-sr-SQI" firstAttribute="trailing" secondItem="saN-Id-u6b" secondAttribute="trailing" id="S21-Yl-Dkp"/>
                             <constraint firstAttribute="bottom" secondItem="DpI-sr-SQI" secondAttribute="bottom" id="SXd-mc-2ZQ"/>
                             <constraint firstItem="niT-zN-Pcs" firstAttribute="trailing" secondItem="saN-Id-u6b" secondAttribute="trailing" id="bHR-eg-Ig8"/>
                             <constraint firstItem="svp-6k-D0i" firstAttribute="top" secondItem="saN-Id-u6b" secondAttribute="top" constant="12" id="ewA-3B-gyd"/>
+                            <constraint firstItem="saN-Id-u6b" firstAttribute="bottom" secondItem="niT-zN-Pcs" secondAttribute="bottom" constant="12" id="gOp-ik-YQJ"/>
                             <constraint firstItem="DpI-sr-SQI" firstAttribute="leading" secondItem="saN-Id-u6b" secondAttribute="leading" id="jRr-tu-1ne"/>
                             <constraint firstItem="svp-6k-D0i" firstAttribute="leading" secondItem="saN-Id-u6b" secondAttribute="leading" constant="16" id="jjF-jm-sXC"/>
                             <constraint firstItem="DpI-sr-SQI" firstAttribute="top" secondItem="fGa-Up-fcN" secondAttribute="top" id="jo3-DC-mf4"/>
                             <constraint firstItem="saN-Id-u6b" firstAttribute="trailing" secondItem="svp-6k-D0i" secondAttribute="trailing" constant="16" id="ndW-Cf-JQw"/>
                             <constraint firstItem="niT-zN-Pcs" firstAttribute="leading" secondItem="saN-Id-u6b" secondAttribute="leading" id="ofg-Rn-A4K"/>
-                            <constraint firstItem="saN-Id-u6b" firstAttribute="bottom" secondItem="niT-zN-Pcs" secondAttribute="bottom" constant="73" id="xQH-qF-WZV"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="WEATHER DATA" image="Weather_Data_Tab" id="GjD-hB-Ela"/>
                     <connections>
                         <outlet property="ccLabel" destination="Y83-VY-uN2" id="Qpj-Ji-ebP"/>
+                        <outlet property="chartSub" destination="niT-zN-Pcs" id="dAw-jx-2oi"/>
                         <outlet property="humLabel" destination="u2k-FW-4PF" id="k8d-e1-iPb"/>
                         <outlet property="precLabel" destination="FGW-yd-G2F" id="8d7-rf-2p8"/>
                         <outlet property="topView" destination="svp-6k-D0i" id="twQ-z9-TWp"/>

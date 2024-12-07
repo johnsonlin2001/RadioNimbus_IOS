@@ -51,16 +51,6 @@ class weatherDataTabController: UIViewController {
         title.style.fontSize = "24px"
         options.title = title
 
-        let tooltip = HITooltip()
-        tooltip.borderWidth = 0
-        tooltip.shadow = HIShadowOptionsObject()
-        tooltip.shadow.opacity = 0
-        tooltip.style = HICSSObject()
-        tooltip.style.fontSize = "16px"
-        tooltip.valueSuffix = "%"
-        tooltip.pointFormat = "{series.name}<br><span style=\"font-size:2em; color: {point.color}; font-weight: bold\">{point.y}</span>"
-        tooltip.positioner = HIFunction(jsFunction: "function (labelWidth) { return { x: (this.chart.chartWidth - labelWidth) / 2, y: (this.chart.plotHeight / 2) + 15 }; }")
-        options.tooltip = tooltip
 
         let pane = HIPane()
         pane.startAngle = 0
@@ -84,22 +74,20 @@ class weatherDataTabController: UIViewController {
         background3.innerRadius = "38%"
         background3.borderWidth = 0
 
-        pane.background = [
-            background1, background2, background3
-        ]
+        pane.background = [background1, background2, background3]
 
         options.pane = [pane]
 
         let yAxis = HIYAxis()
         yAxis.min = 0
         yAxis.max = 100
-        yAxis.lineWidth = 0 // Removes the gauge line
-        yAxis.tickWidth = 0 // Removes major ticks
-        yAxis.minorTicks = false // Removes minor ticks
-        yAxis.gridLineWidth = 0 // Removes grid lines
-        yAxis.tickPositions = [] // No ticks at all
+        yAxis.lineWidth = 0
+        yAxis.tickWidth = 0
+        yAxis.minorTicks = false
+        yAxis.gridLineWidth = 0
+        yAxis.tickPositions = []
         yAxis.labels = HILabels()
-        yAxis.labels.enabled = false // Removes the labels
+        yAxis.labels.enabled = false
         options.yAxis = [yAxis]
 
         let plotOptions = HIPlotOptions()
@@ -112,13 +100,12 @@ class weatherDataTabController: UIViewController {
         plotOptions.solidgauge.rounded = true
         options.plotOptions = plotOptions
 
-        // Correctly configure each series with its own data
         let cloudCover = HISolidgauge()
         cloudCover.name = "Cloud Cover"
         let cloudData = HIData()
         cloudData.color = HIColor(rgba: 82, green: 204, blue: 15, alpha: 1)
-        cloudData.radius = "112%"
-        cloudData.innerRadius = "88%"
+        cloudData.radius = "114%"
+        cloudData.innerRadius = "90%"
         cloudData.y = self.currentCloudCover as? NSNumber
         cloudCover.data = [cloudData]
 
@@ -126,8 +113,8 @@ class weatherDataTabController: UIViewController {
         prec.name = "Precipitation"
         let precData = HIData()
         precData.color = HIColor(rgba: 76, green: 202, blue: 249, alpha: 1)
-        precData.radius = "87%"
-        precData.innerRadius = "63%"
+        precData.radius = "89%"
+        precData.innerRadius = "65%"
         precData.y = self.currentPrec as? NSNumber
         prec.data = [precData]
 
@@ -135,8 +122,8 @@ class weatherDataTabController: UIViewController {
         humidity.name = "Humidity"
         let humidityData = HIData()
         humidityData.color = HIColor(rgba: 242, green: 24, blue: 66, alpha: 1)
-        humidityData.radius = "62%"
-        humidityData.innerRadius = "38%"
+        humidityData.radius = "64%"
+        humidityData.innerRadius = "40%"
         humidityData.y = self.currentHum as? NSNumber
         humidity.data = [humidityData]
 

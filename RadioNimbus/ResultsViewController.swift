@@ -85,6 +85,10 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var weeklyData: [[String: Any]] = []
     
+    var currentPrec: Int?
+    var currentHum: Int?
+    var currentCloudCover: Int?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -191,6 +195,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let currentPressure = values?["pressureSeaLevel"] as? Double ?? 0
         pressureLabel.text = "\(currentPressure) inHg"
         
+        let currentPrec = values?["precipitationProbability"] as? Int ?? 0
+        self.currentPrec = currentPrec
+        self.currentHum = Int(currentHumidity.rounded())
+        let currentCCover = values?["cloudCover"] as? Double ?? 0
+        self.currentCloudCover = Int(currentCCover.rounded())
+        
     }
     
     @IBAction func composeTweet(_ sender: UIBarButtonItem) {
@@ -228,6 +238,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     weeklyTab.currentTemp = currentTemp
                     weeklyTab.currentStatus = currentStatus
                     weeklyTab.weeklyData = self.weeklyData
+                }
+                else if let weatherDataTab = view as? weatherDataTabController{
+                    weatherDataTab.currentHum = self.currentHum
+                    weatherDataTab.currentPrec = self.currentPrec
+                    weatherDataTab.currentCloudCover = self.currentCloudCover
+                    
                 }
             }
             }

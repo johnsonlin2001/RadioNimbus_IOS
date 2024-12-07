@@ -32,6 +32,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     var todayData: [String: Any]?
     var currentTemp: Int?
     var currentStatus: String?
+    
+    var currentPrec: Int?
+    var currentHum: Int?
+    var currentCloudCover: Int?
 
     
     var scheduleFetch: DispatchWorkItem?
@@ -249,6 +253,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                     weeklyTab.currentStatus = currentStatus
                     weeklyTab.weeklyData = self.weeklyData
                 }
+                else if let weatherDataTab = view as? weatherDataTabController{
+                    weatherDataTab.currentHum = self.currentHum
+                    weatherDataTab.currentPrec = self.currentPrec
+                    weatherDataTab.currentCloudCover = self.currentCloudCover
+                    
+                }
             }
             }
             
@@ -423,8 +433,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let currentPressure = values?["pressureSeaLevel"] as? Double ?? 0
         pressureLabel.text = "\(currentPressure) inHg"
         
-        
-        
+        let currentPrec = values?["precipitationProbability"] as? Int ?? 0
+        self.currentPrec = currentPrec
+        self.currentHum = Int(currentHumidity.rounded())
+        let currentCCover = values?["cloudCover"] as? Double ?? 0
+        self.currentCloudCover = Int(currentCCover.rounded())
         
     }
 

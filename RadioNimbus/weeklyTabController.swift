@@ -25,7 +25,6 @@ class weeklyTabController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var temperatureData: [[Any]] = []
-        print(self.weeklyData)
         for day in weeklyData {
             if let startTime = day["startTime"] as? String,
                let values = day["values"] as? [String: Any],

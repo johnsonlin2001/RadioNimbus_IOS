@@ -190,11 +190,13 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {}
             latitude = location.coordinate.latitude
             longitude = location.coordinate.longitude
             locationManager.stopUpdatingLocation() // Stop updates if not needed continuously
 
             getWeatherData(for: latitude ?? 37.7749 , for: longitude ?? -122.4194)
+            
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location) { place, error in
             let place = place?.first

@@ -13,7 +13,8 @@ import CoreLocation
 import SwiftSpinner
 
 
-class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+
+class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIScrollViewDelegate {
     
     let locationManager = CLLocationManager()
     var latitude: Double?
@@ -39,6 +40,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
 
     
     var scheduleFetch: DispatchWorkItem?
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
+            pageControl.currentPage = Int(pageIndex)
+        }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView==cityDropDown){
             return suggestions.count
@@ -60,7 +67,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         let outputDate = DateFormatter()
         outputDate.dateFormat = "hh:mm a"
-        outputDate.timeZone = TimeZone(abbreviation: "PST") 
+        outputDate.timeZone = TimeZone(abbreviation: "PST")
 
         let pstTime = outputDate.string(from: date!)
         return pstTime
@@ -157,9 +164,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var weeklyTable: UITableView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var pageControl: UIPageControl!
+    
+    @IBOutlet weak var scrollView: FavScrollView!
     
     
     @IBAction func tapDetails(_ sender: UITapGestureRecognizer) {
@@ -175,6 +183,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        scrollView.subView = subview1
         weeklyTable.reloadData()
         locationManager.delegate = self
         citySearchBar.delegate = self
@@ -189,6 +198,32 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         cityDropDown.isHidden = true
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         self.navigationItem.backButtonTitle = "Weather"
+        
+        //testing
+        scrollView.delegate = self
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+
+        // Set up content size for 2 pages
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
+
+        // Set up UIPageControl
+        pageControl.numberOfPages = 2 // Two pages: home and favorites
+        pageControl.currentPage = 0
+
+        // Add home page view (current view controller's view)
+        let homeView = UIView(frame: CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height))
+        scrollView.addSubview(homeView)
+
+        // Add the FavTabBarController to the second page
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let favTabBarController = storyboard.instantiateViewController(withIdentifier: "FavTabController") as? FavTabController {
+            let favView = favTabBarController.view!
+            favView.frame = CGRect(x: scrollView.frame.width, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
+            scrollView.addSubview(favView)
+            addChild(favTabBarController)
+            favTabBarController.didMove(toParent: self)
+        }
 
     }
     
@@ -248,7 +283,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             detailsView?.currentStatus = self.currentStatus
             if let viewControllers = detailsView!.viewControllers {
             for view in viewControllers {
-                if let todayTab = view as? TodayTabController { 
+                if let todayTab = view as? TodayTabController {
                     todayTab.city = self.currentCity
                     todayTab.data = self.todayData
                     

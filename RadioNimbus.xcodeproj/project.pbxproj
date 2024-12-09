@@ -14,6 +14,7 @@
 		036364762D02E12F005985D1 /* weeklyTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036364752D02E12F005985D1 /* weeklyTabController.swift */; };
 		0363647C2D041F97005985D1 /* weatherDataTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363647B2D041F97005985D1 /* weatherDataTabController.swift */; };
 		036478022D06ABF2000C218A /* FavTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036478012D06ABF2000C218A /* FavTabController.swift */; };
+		036478582D07A943000C218A /* FavScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036478572D07A943000C218A /* FavScrollView.swift */; };
 		0388BE822CEB1845007444AF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE812CEB1845007444AF /* Alamofire */; };
 		0388BE852CEB1864007444AF /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE842CEB1864007444AF /* Toast */; };
 		0388BE882CEB18E7007444AF /* SwiftSpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 0388BE872CEB18E7007444AF /* SwiftSpinner */; };
@@ -43,6 +44,7 @@
 		036364752D02E12F005985D1 /* weeklyTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = weeklyTabController.swift; path = RadioNimbus/weeklyTabController.swift; sourceTree = "<group>"; };
 		0363647B2D041F97005985D1 /* weatherDataTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = weatherDataTabController.swift; path = RadioNimbus/weatherDataTabController.swift; sourceTree = "<group>"; };
 		036478012D06ABF2000C218A /* FavTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavTabController.swift; path = RadioNimbus/FavTabController.swift; sourceTree = "<group>"; };
+		036478572D07A943000C218A /* FavScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavScrollView.swift; path = RadioNimbus/FavScrollView.swift; sourceTree = "<group>"; };
 		0388BE482CEB1559007444AF /* RadioNimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioNimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0388BE612CEB155C007444AF /* RadioNimbusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioNimbusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0388BE6B2CEB155C007444AF /* RadioNimbusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioNimbusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 		0388BE3F2CEB1559007444AF = {
 			isa = PBXGroup;
 			children = (
+				036478572D07A943000C218A /* FavScrollView.swift */,
 				036478012D06ABF2000C218A /* FavTabController.swift */,
 				0363647B2D041F97005985D1 /* weatherDataTabController.swift */,
 				036364752D02E12F005985D1 /* weeklyTabController.swift */,
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03438C552CF1A032003E824B /* ResultsViewController.swift in Sources */,
+				036478582D07A943000C218A /* FavScrollView.swift in Sources */,
 				036364762D02E12F005985D1 /* weeklyTabController.swift in Sources */,
 				03438CB62CF5A44D003E824B /* TodayTabController.swift in Sources */,
 				0363647C2D041F97005985D1 /* weatherDataTabController.swift in Sources */,

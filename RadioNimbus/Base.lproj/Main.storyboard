@@ -20,6 +20,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="App_background" translatesAutoresizingMaskIntoConstraints="NO" id="8HU-Gk-bBs">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0z-re-g8V">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="PQa-xt-Lgb"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Sq9-vJ-uuq"/>
+                            </scrollView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tHD-qU-jUg">
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -241,6 +246,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n4q-n0-wRY">
+                                <rect key="frame" x="160" y="782.33333333333337" width="73" height="25.666666666666629"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -248,20 +256,27 @@
                             <constraint firstItem="ari-eM-Rbh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="0eI-GK-EXR"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="0iN-XO-qaR"/>
                             <constraint firstItem="8HU-Gk-bBs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Um-N2-3nU"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="n4q-n0-wRY" secondAttribute="bottom" constant="10" id="4dI-jv-w07"/>
+                            <constraint firstItem="P0z-re-g8V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5lO-79-ehy"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6HN-Nw-uTP"/>
                             <constraint firstAttribute="trailing" secondItem="8HU-Gk-bBs" secondAttribute="trailing" id="9H4-DY-RN4"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BuP-4J-Zf6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ari-eM-Rbh" secondAttribute="trailing" constant="16" id="HYx-m4-DMs"/>
                             <constraint firstAttribute="bottom" secondItem="8HU-Gk-bBs" secondAttribute="bottom" id="IrK-A7-Qyh"/>
+                            <constraint firstAttribute="bottom" secondItem="P0z-re-g8V" secondAttribute="bottom" id="NLQ-e6-jPX"/>
                             <constraint firstItem="ari-eM-Rbh" firstAttribute="top" secondItem="YdA-2J-BFz" secondAttribute="bottom" constant="24.329999999999998" id="Qme-lJ-uLf"/>
                             <constraint firstItem="tHD-qU-jUg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RTp-ej-28j"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="top" secondItem="tHD-qU-jUg" secondAttribute="bottom" id="bzi-Pw-hzo"/>
+                            <constraint firstItem="P0z-re-g8V" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="e3u-wl-GdR"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fL4-Rr-du9"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ght-Ad-OXC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rp6-gt-bIl" secondAttribute="bottom" constant="500" id="gmt-3C-qOB"/>
+                            <constraint firstItem="n4q-n0-wRY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="160" id="h8a-qm-pmQ"/>
                             <constraint firstItem="rp6-gt-bIl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lOL-HB-Qzp"/>
                             <constraint firstItem="tHD-qU-jUg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mSa-Wj-r9o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ari-eM-Rbh" secondAttribute="bottom" constant="47" id="msK-DX-9N0"/>
+                            <constraint firstItem="P0z-re-g8V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qef-gF-t45"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n4q-n0-wRY" secondAttribute="trailing" constant="160" id="rVK-2A-AGG"/>
                             <constraint firstItem="YdA-2J-BFz" firstAttribute="top" secondItem="Gbu-Zk-0bi" secondAttribute="bottom" constant="40" id="tPK-IK-KHW"/>
                             <constraint firstItem="tHD-qU-jUg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="thg-V5-YMo"/>
                             <constraint firstItem="tHD-qU-jUg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="v0R-Lj-5of"/>
@@ -274,7 +289,9 @@
                         <outlet property="citySearchBar" destination="tHD-qU-jUg" id="zEw-2o-ESU"/>
                         <outlet property="humidityLabel" destination="a61-mu-qN4" id="UKt-61-c54"/>
                         <outlet property="locationLabel" destination="b5w-p8-MDK" id="Q86-mg-ZEX"/>
+                        <outlet property="pageControl" destination="n4q-n0-wRY" id="IqP-gd-24l"/>
                         <outlet property="pressureLabel" destination="f6v-4T-XKP" id="eLN-jC-Ih0"/>
+                        <outlet property="scrollView" destination="P0z-re-g8V" id="GeW-ch-ImZ"/>
                         <outlet property="statusLabel" destination="DZk-Ed-6IN" id="ZB5-O2-KXa"/>
                         <outlet property="subview1" destination="Gbu-Zk-0bi" id="dgq-UC-yEQ"/>
                         <outlet property="temperatureLabel" destination="cyc-8t-DWm" id="fq5-iv-s13"/>
@@ -1442,7 +1459,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fal-en-CGa"/>
+        <segue reference="eXI-iv-3g0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="App_background" width="1080" height="1920"/>

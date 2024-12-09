@@ -157,6 +157,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBOutlet weak var weeklyTable: UITableView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    
     @IBAction func tapDetails(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "detailsSegue", sender: self)
     }

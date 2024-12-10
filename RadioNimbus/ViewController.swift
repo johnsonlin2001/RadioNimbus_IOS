@@ -174,9 +174,70 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
+    func fetchFavorites(completion: @escaping ([Favorite]) -> Void) {
+        let backendUrl = "https://radionimbus.wl.r.appspot.com/getfavorites"
+        AF.request(backendUrl, method: .get).validate().responseDecodable(of: [Favorite].self) { response in
+            switch response.result {
+            case .success(let favorites):
+                completion(favorites)
+            case .failure(let error):
+                print("Error fetching favorites: \(error)")
+                completion([])
+            }
+        }
+    }
+    
+    func setupTabs(with favorites: [Favorite]) {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+
+        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(favorites.count + 1), height: screenHeight)
+
+        for (index, favorite) in favorites.enumerated() {
+            let xPosition = screenWidth * CGFloat(index + 1)
+
+            // Instantiate the FavTabController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let favTabController = storyboard.instantiateViewController(withIdentifier: "FavTabController") as? FavTabController {
+                favTabController.latitude = favorite.lat
+                favTabController.longitude = favorite.long
+                favTabController.currentCity = favorite.city
+                favTabController.currentState = favorite.state
+
+                // Set up the view
+                let favView = favTabController.view!
+                favView.frame = CGRect(x: xPosition, y: 0, width: screenWidth, height: screenHeight)
+
+                scrollView.addSubview(favView)
+                addChild(favTabController)
+                favTabController.didMove(toParent: self)
+            }
+        }
+
+        pageControl.numberOfPages = favorites.count + 1
+    }
+    
+    struct Favorite: Codable {
+        let city: String
+        let state: String
+        let lat: String
+        let long: String
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        for subview in scrollView.subviews {
+                subview.removeFromSuperview()
+            }
+            scrollView.contentSize = .zero
+
+            // Fetch favorites and set up tabs
+            fetchFavorites { [weak self] favorites in
+                DispatchQueue.main.async {
+                    self?.setupTabs(with: favorites)
+                }
+            }
     }
 
     
@@ -205,6 +266,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         scrollView.showsHorizontalScrollIndicator = false
 
         // Set up content size for 2 pages
+        /*
         scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
 
         // Set up UIPageControl
@@ -224,6 +286,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             addChild(favTabBarController)
             favTabBarController.didMove(toParent: self)
         }
+         */
 
     }
     

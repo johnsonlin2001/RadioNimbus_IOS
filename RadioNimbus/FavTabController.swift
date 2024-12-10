@@ -13,11 +13,12 @@ import CoreLocation
 import SwiftSpinner
 
 
-class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let locationManager = CLLocationManager()
-    var latitude: Double?
-    var longitude: Double?
+    var latitude: String?
+    var longitude: String?
+    
     
     var selectedLat: Double?
     var selectedLong: Double?
@@ -28,6 +29,7 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     var selectedState: String?
     
     var currentCity: String?
+    var currentState: String?
     
     var todayData: [String: Any]?
     var currentTemp: Int?
@@ -163,6 +165,7 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        getWeatherData(for: Double(latitude ?? "0") ?? 37.7749 , for: Double(longitude ?? "0") ?? -122.4194)
     }
 
     
@@ -170,16 +173,12 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         weeklyTable.reloadData()
-        locationManager.delegate = self
         citySearchBar.delegate = self
         cityDropDown.delegate = self
         cityDropDown.dataSource = self
         weeklyTable.delegate = self
         weeklyTable.dataSource = self
         view.bringSubviewToFront(cityDropDown)
-        locationManager.requestWhenInUseAuthorization()
-        
-        locationManager.startUpdatingLocation()
         cityDropDown.isHidden = true
         subview1.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         self.navigationItem.backButtonTitle = "Weather"
@@ -187,27 +186,6 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     }
     
     // Delegate method: Successfully received location updates
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {}
-            latitude = location.coordinate.latitude
-            longitude = location.coordinate.longitude
-            locationManager.stopUpdatingLocation() // Stop updates if not needed continuously
-
-            getWeatherData(for: latitude ?? 37.7749 , for: longitude ?? -122.4194)
-            
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location) { place, error in
-            let place = place?.first
-            let city = place?.locality
-            self.locationLabel.text = city
-            self.currentCity = city
-                }
-
-
-        }
-    }
     
     func getCityCoordinates(for location: (city: String, state: String), completion: @escaping (Double?, Double?) -> Void) {
         let geocoder = CLGeocoder()
@@ -408,6 +386,7 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     ]
     
     func updateValues(with weatherData:[String: Any]){
+        locationLabel.text = self.currentCity
         let daily_data = weatherData["daily_data"]as? [String: Any]
         let data = daily_data?["data"] as? [String: Any]
         let timelines = data?["timelines"] as? [[String: Any]]

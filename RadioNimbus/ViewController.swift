@@ -226,8 +226,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 addChild(favTabController)
                 favTabController.didMove(toParent: self)
                 //childTabs.append(favTabController)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {}
-                favTabController.fetchWeatherData()
+                let delay = Double(index+1) * 3.0 // 3 seconds delay between each fetch
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    favTabController.fetchWeatherData()
+                }
+                
             }
         }
 

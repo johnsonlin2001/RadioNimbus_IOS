@@ -27,6 +27,7 @@ class detailsTabBarController: UITabBarController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = city
 
         // Do any additional setup after loading the view.
     }

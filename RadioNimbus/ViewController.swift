@@ -41,6 +41,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     var scheduleFetch: DispatchWorkItem?
     
+    var childTabs: [UIViewController] = []
+
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
             let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
             pageControl.currentPage = Int(pageIndex)
@@ -174,6 +177,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControl.currentPage = pageIndex
+
+        // Fetch weather data for the currently visible tab if it's a FavTabController
+        if pageIndex < childTabs.count, let currentTabController = childTabs[pageIndex] as? FavTabController {
+            currentTabController.fetchWeatherDataIfNeeded()
+        }
+    }
+    
     func fetchFavorites(completion: @escaping ([Favorite]) -> Void) {
         let backendUrl = "https://radionimbus.wl.r.appspot.com/getfavorites"
         AF.request(backendUrl, method: .get).validate().responseDecodable(of: [Favorite].self) { response in
@@ -191,6 +204,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
         scrollView.contentSize = CGSize(width: width * CGFloat(favorites.count + 1), height: height)
+        
+        childTabs.removeAll()
 
         for (index, favorite) in favorites.enumerated() {
             let xpos = width * CGFloat(index + 1)
@@ -209,6 +224,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 scrollView.addSubview(favView)
                 addChild(favTabController)
                 favTabController.didMove(toParent: self)
+                childTabs.append(favTabController)
             }
         }
 

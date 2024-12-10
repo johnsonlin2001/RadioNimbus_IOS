@@ -41,6 +41,17 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
 
     
     var scheduleFetch: DispatchWorkItem?
+    
+    var Fetched = false
+    
+    func fetchWeatherDataIfNeeded() {
+            if !Fetched {
+                getWeatherData(for: Double(latitude ?? "0") ?? 37.7749 , for: Double(longitude ?? "0") ?? -122.4194)
+                Fetched = true
+            }
+        }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView==cityDropDown){
             return suggestions.count
@@ -162,10 +173,10 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
         performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        getWeatherData(for: Double(latitude ?? "0") ?? 37.7749 , for: Double(longitude ?? "0") ?? -122.4194)
     }
 
     

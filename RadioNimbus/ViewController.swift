@@ -264,6 +264,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         scrollView.subView = subview1
+        subview1.layer.borderColor = UIColor.white.cgColor
+        subview1.layer.borderWidth = 1.0
         weeklyTable.reloadData()
         locationManager.delegate = self
         citySearchBar.delegate = self

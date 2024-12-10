@@ -180,7 +180,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
         self.currentTemp = Int(currentTemperature.rounded())
         self.weeklyTable.reloadData()
-        temperatureLabel.text = "\(currentTemperature)°F"
+        temperatureLabel.text = "\(Int(currentTemperature.rounded()))°F"
         let weatherCode = values?["weatherCode"] as? Int ?? 0
         let currentStatus = weatherCodes[weatherCode]
         self.currentStatus = currentStatus

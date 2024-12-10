@@ -58,20 +58,20 @@ class weatherDataTabController: UIViewController {
 
         let background1 = HIBackground()
         background1.backgroundColor = HIColor(rgba: 82, green: 204, blue: 15, alpha: 0.35)
-        background1.outerRadius = "112%"
-        background1.innerRadius = "88%"
+        background1.outerRadius = "114%"
+        background1.innerRadius = "90%"
         background1.borderWidth = 0
 
         let background2 = HIBackground()
         background2.backgroundColor = HIColor(rgba: 76, green: 202, blue: 249, alpha: 0.35)
-        background2.outerRadius = "87%"
-        background2.innerRadius = "63%"
+        background2.outerRadius = "89%"
+        background2.innerRadius = "65%"
         background2.borderWidth = 0
 
         let background3 = HIBackground()
         background3.backgroundColor = HIColor(rgba: 242, green: 24, blue: 66, alpha: 0.35)
-        background3.outerRadius = "62%"
-        background3.innerRadius = "38%"
+        background3.outerRadius = "64%"
+        background3.innerRadius = "40%"
         background3.borderWidth = 0
 
         pane.background = [background1, background2, background3]

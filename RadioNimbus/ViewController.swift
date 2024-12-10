@@ -529,7 +529,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let values = currentData?["values"] as? [String: Any]
         self.todayData = values
         let currentTemperature = values?["temperature"] as? Double ?? 0.0
-        temperatureLabel.text = "\(currentTemperature)°F"
+        temperatureLabel.text = "\(Int(currentTemperature.rounded()))°F"
         self.currentTemp = Int(currentTemperature.rounded())
         let weatherCode = values?["weatherCode"] as? Int ?? 0
         let currentStatus = weatherCodes[weatherCode]

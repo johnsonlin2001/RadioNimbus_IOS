@@ -181,22 +181,20 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             case .success(let favorites):
                 completion(favorites)
             case .failure(let error):
-                print("Error fetching favorites: \(error)")
+                print(error)
                 completion([])
             }
         }
     }
     
     func setupTabs(with favorites: [Favorite]) {
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-
-        scrollView.contentSize = CGSize(width: screenWidth * CGFloat(favorites.count + 1), height: screenHeight)
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        scrollView.contentSize = CGSize(width: width * CGFloat(favorites.count + 1), height: height)
 
         for (index, favorite) in favorites.enumerated() {
-            let xPosition = screenWidth * CGFloat(index + 1)
+            let xpos = width * CGFloat(index + 1)
 
-            // Instantiate the FavTabController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let favTabController = storyboard.instantiateViewController(withIdentifier: "FavTabController") as? FavTabController {
                 favTabController.latitude = favorite.lat
@@ -204,9 +202,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 favTabController.currentCity = favorite.city
                 favTabController.currentState = favorite.state
 
-                // Set up the view
+
                 let favView = favTabController.view!
-                favView.frame = CGRect(x: xPosition, y: 0, width: screenWidth, height: screenHeight)
+                favView.frame = CGRect(x: xpos, y: 0, width: width, height: height)
 
                 scrollView.addSubview(favView)
                 addChild(favTabController)
@@ -232,7 +230,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             }
             scrollView.contentSize = .zero
 
-            // Fetch favorites and set up tabs
             fetchFavorites { [weak self] favorites in
                 DispatchQueue.main.async {
                     self?.setupTabs(with: favorites)
@@ -264,20 +261,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
-
-        // Set up content size for 2 pages
         /*
         scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
 
-        // Set up UIPageControl
         pageControl.numberOfPages = 2 // Two pages: home and favorites
         pageControl.currentPage = 0
-
-        // Add home page view (current view controller's view)
         let homeView = UIView(frame: CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scrollView.frame.height))
         scrollView.addSubview(homeView)
-
-        // Add the FavTabBarController to the second page
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let favTabBarController = storyboard.instantiateViewController(withIdentifier: "FavTabController") as? FavTabController {
             let favView = favTabBarController.view!

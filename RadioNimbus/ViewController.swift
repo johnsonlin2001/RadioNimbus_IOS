@@ -177,15 +177,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
+    /*
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.currentPage = pageIndex
 
-        // Fetch weather data for the currently visible tab if it's a FavTabController
         if pageIndex < childTabs.count, let currentTabController = childTabs[pageIndex] as? FavTabController {
-            currentTabController.fetchWeatherDataIfNeeded()
+            currentTabController.fetchWeatherData()
         }
     }
+     */
     
     func fetchFavorites(completion: @escaping ([Favorite]) -> Void) {
         let backendUrl = "https://radionimbus.wl.r.appspot.com/getfavorites"
@@ -224,7 +225,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 scrollView.addSubview(favView)
                 addChild(favTabController)
                 favTabController.didMove(toParent: self)
-                childTabs.append(favTabController)
+                //childTabs.append(favTabController)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {}
+                favTabController.fetchWeatherData()
             }
         }
 

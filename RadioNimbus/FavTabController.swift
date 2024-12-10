@@ -44,7 +44,7 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     
     var Fetched = false
     
-    func fetchWeatherDataIfNeeded() {
+    func fetchWeatherData() {
             if !Fetched {
                 getWeatherData(for: Double(latitude ?? "0") ?? 37.7749 , for: Double(longitude ?? "0") ?? -122.4194)
                 Fetched = true
@@ -334,6 +334,7 @@ class FavTabController: UIViewController, UISearchBarDelegate, UITableViewDelega
     }
     
     func getWeatherData(for lat: Double, for long: Double){
+        print("fetching")
         let backendUrl = "https://radionimbus.wl.r.appspot.com/fetchweatherdata"
         let queryParams: [String: Any] = ["lat": lat, "long": long]
         

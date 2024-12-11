@@ -131,8 +131,8 @@ class TodayTabController: UIViewController {
     func updateValues(with weatherData:[String: Any]){
         let currentTemperature = weatherData["temperature"] as? Double ?? 0
         temperatureLabel.text = "\(Int(currentTemperature.rounded()))°F"
-        let currentHumidity = weatherData["humidity"] as? Int ?? 0
-        humidityLabel.text = "\(currentHumidity) %"
+        let currentHumidity = weatherData["humidity"] as? Double ?? 0
+        humidityLabel.text = "\(Int(currentHumidity.rounded())) %"
         let currentWindspeed = weatherData["windSpeed"] as? Double ?? 0
         windLabel.text = "\(currentWindspeed) mph"
         let currentPressure = weatherData["pressureSeaLevel"] as? Double ?? 0

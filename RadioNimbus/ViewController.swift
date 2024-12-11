@@ -263,6 +263,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        SwiftSpinner.show("Fetching Weather Details for Current Location")
         scrollView.subView = subview1
         subview1.layer.borderColor = UIColor.white.cgColor
         subview1.layer.borderWidth = 1.0
@@ -555,6 +556,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.currentHum = Int(currentHumidity.rounded())
         let currentCCover = values?["cloudCover"] as? Double ?? 0
         self.currentCloudCover = Int(currentCCover.rounded())
+        SwiftSpinner.hide()
         
     }
 
